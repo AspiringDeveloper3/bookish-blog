@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookish | Review</title>
+  </head>
+  <body>
+    <%- include("navbar.ejs") %>
+    <h1 class="book-title">Book - <%= bookName %></h1>
+    <% reviews.forEach(review => { %>
+    <fieldset>
+      <legend><h2><%= review.title %></h2></legend>
+      <h3><%= review.date %></h3>
+      <p><%= review.content %></p>
+    </fieldset>
+    <% }) %>
+    <form action="/reviews/" class="book-post" method="post">
+      <h1>Post a new Review</h1>
+      <div class="input-fields">
+        <label for="title">Title:</label>
+        <br />
+        <input autocomplete="off" type="text" name="title" id="title" />
+      </div>
+      <br />
+      <div class="input-fields">
+        <label for="new-review">Content:</label>
+        <br />
+        <textarea name="review" id="new-review"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Save</button>
+    </form>
+  </body>
+</html>

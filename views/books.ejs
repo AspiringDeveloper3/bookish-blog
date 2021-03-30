@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookish | The Awesome book site</title>
+  </head>
+  <body>
+    <%- include("navbar.ejs") %>
+    <h1 class="header">Add a new Book</h1>
+
+    <form class="add-form" action="/books" method="post">
+      <input
+        class="input"
+        type="url"
+        placeholder="Enter image URL for book"
+        required
+        name="image"
+        minlength="50"
+        id="image-input"
+        autocomplete="off"
+      />
+      <input
+        type="text"
+        class="input"
+        placeholder="Enter book title"
+        required
+        name="name"
+        id="book-input"
+        autocomplete="off"
+      />
+      <button class="add-btn">+</button>
+    </form>
+    <div class="flex">
+      <% books.forEach(book => { %>
+      <div class="book">
+        <p><%= book.name %></p>
+        <img class="book-img" src="<%= book.imageUrl %>" alt="image" />
+        <form action="/reviews/" method="GET">
+          <input type="hidden" name="bookName" value="<%= book.name %>" />
+          <button type="submit" class="submit-btn">See Reviews</button>
+        </form>
+      </div>
+      <% }) %>
+    </div>
+
+  </body>
+</html>
